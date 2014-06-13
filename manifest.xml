@@ -1,0 +1,14 @@
+<package>
+  <description brief="Seminarkurs">
+
+     Seminarkurs
+
+  </description>
+  <author>Philipp</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/Seminarkurs</url>
+
+</package>
+
+
