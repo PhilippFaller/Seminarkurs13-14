@@ -17,3 +17,7 @@ bin/*
 *.lai
 *.la
 *.a
+
+#Stuff that isn't ready for the internet
+/home/philipp/fuerte_workspace/Seminarkurs/classifiers/training_door/*
+

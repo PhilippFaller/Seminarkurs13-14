@@ -1,5 +1,16 @@
-#include <iostream>
+#include "ros/ros.h"
+#include "../inc/drone.h"
 
+using namespace ros;
 int main(int argc, char** argv){
-    std::cout<<"Hello ROS!"<<std::endl;
+    init(argc, argv, "Seminarkurs");
+    Drone d;
+    d.takeoff();
+    ros::Rate r(1);
+    r.sleep();
+    r.sleep();
+    r.sleep();
+    d.land();
+
 }
+
