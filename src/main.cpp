@@ -10,7 +10,8 @@ int main(int argc, char** argv){
     r.sleep();
     r.sleep();
     r.sleep();
-    d.land();
+    //d.land();
+    std::cout<<"WTF"<<std::endl;
 
 }
 
