@@ -19,6 +19,7 @@ class Drone{
 private:
     tum_ardrone::filter_state state;
     sensor_msgs::Image img;
+    std_msgs::String msg;
     ros::NodeHandle nodeHandle;
     ros::Publisher movePublisher;
     ros::Subscriber posSubscriber;

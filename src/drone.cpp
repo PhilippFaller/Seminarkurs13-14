@@ -21,50 +21,49 @@ void Drone::callbackLoop()
 
 Drone::Drone() : destruction(false)
 {
-    movePublisher = nodeHandle.advertise<std_msgs::String>(nodeHandle.resolveName("/tum_ardrone/com"), 1, true);
+    movePublisher  = nodeHandle.advertise<std_msgs::String>(nodeHandle.resolveName("/tum_ardrone/com"), 1, true);
     posSubscriber = nodeHandle.subscribe(nodeHandle.resolveName("/ardrone/predictedPose"), 1, &Drone::updatePos, this);
     imgSubscriber = nodeHandle.subscribe(nodeHandle.resolveName("ardrone/front/image_raw"), 1, &Drone::updateImg, this);
     callbackThread = std::thread(&Drone::callbackLoop, this);
+    msg.data = "c start";
+    movePublisher.publish(msg);
 }
 
 Drone::~Drone()
 {
     destruction = true;
+    msg.data = "c stop";
+    movePublisher.publish(msg);
     callbackThread.join();
 }
 
 void Drone::takeoff()
 {
-    std_msgs::String msg;
     msg.data = "c autoInit 500 800 4000 0.5";
     movePublisher.publish(msg);
 }
 
 void Drone::land()
 {
-    std_msgs::String msg;
     msg.data = "c land";
     movePublisher.publish(msg);
 }
 
 void Drone::forward(float amount)
 {
-    std_msgs::String msg;
-    msg.data = std::string("moveByRel ") + std::to_string(amount) + std::string(" 0 0 0");
+    msg.data = std::string("c moveByRel ") + std::to_string(amount) + std::string(" 0 0 0");
     movePublisher.publish(msg);
 }
 
 void Drone::right(float amount)
 {
-    std_msgs::String msg;
-    msg.data = std::string("moveByRel 0") + std::to_string(amount) + std::string(" 0 0");
+    msg.data = std::string("c moveByRel 0") + std::to_string(amount) + std::string(" 0 0");
     movePublisher.publish(msg);
 }
 
 void Drone::up(float amount)
 {
-    std_msgs::String msg;
-    msg.data = std::string("moveByRel 0 0") + std::to_string(amount) + std::string(" 0");
+    msg.data = std::string("c moveByRel 0 0") + std::to_string(amount) + std::string(" 0");
     movePublisher.publish(msg);
 }
 
